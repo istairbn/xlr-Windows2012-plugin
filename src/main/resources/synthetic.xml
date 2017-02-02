@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+
+ THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS
+ FOR A PARTICULAR PURPOSE. THIS CODE AND INFORMATION ARE NOT SUPPORTED BY XEBIALABS.
+
+-->
+<synthetic xsi:schemaLocation="http://www.xebialabs.com/deployit/synthetic synthetic.xsd" xmlns="http://www.xebialabs.com/deployit/synthetic" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <type type="Windows2012Tools.Processes" extends="xlrelease.PythonScript">
+        <property name="scriptLocation" default="Windows2012Tools/PowershellRunner.py" hidden="true" />
+        <property name="PSscriptLocation"    category="input" kind="string" label="Script" default="Windows2012Tools/Processes.ps1" hidden="true"/>
+        <property name="servers" category="input" kind="string" label="Servers"/>
+        <property name="username"    category="input" kind="string" label="Username"/>
+        <property name="password"    category="input" kind="string" label="Password" password="true" />
+        <property name="remotePath"    category="input" kind="string" label="Remote Path" required="true" default="c:\"/>
+        <property name="port"    category="input" kind="integer" label="Port" default="0" required="true"/>
+
+        <property name="processname" category="input" kind="string" label="Process Name" description="Name of process to stop, comma separate for multiple processes. Wildcard supported. For example: notepa*,explorer"/>
+        <property name="valuesDict" category="input" kind="list_of_string" label="valuesDict" default="processname" hidden="true"/>        
+
+        <property name="winrmEnableHttps" category="input" kind="boolean" required="false" default="false" label="Enable HTTPS for WinRM" description="Enable SSL communication to the WinRM server"/>
+        <property name="connectionType" category="input" default="WINRM_NATIVE" label="Connection type" description="Type of CIFS/Telnet/WinRM connection to create (TELNET, WINRM_INTERNAL, WINRM_NATIVE)"/>
+    </type> 
+
+    <type type="Windows2012Tools.ScheduledTasks" extends="xlrelease.PythonScript">
+        <property name="scriptLocation" default="Windows2012Tools/PowershellRunner.py" hidden="true" />
+        <property name="PSscriptLocation"    category="input" kind="string" label="Script" default="Windows2012Tools/ScheduledTasks.ps1" hidden="true"/>
+        <property name="servers" category="input" kind="string" label="Servers"/>
+        <property name="username"    category="input" kind="string" label="Username"/>
+        <property name="password"    category="input" kind="string" label="Password" password="true" />
+        <property name="remotePath"    category="input" kind="string" label="Remote Path" required="true" default="c:\"/>
+        <property name="port"    category="input" kind="integer" label="Port" default="0" required="true"/>        
+
+        <property name="taskname" category="input" kind="string" label="Task Name" description="Scheduled Task name to change. Wildcard supported. Comma separate for multiple services. For example: Cache*,Disk Cleanup"/>
+        <property name="state"    category="input" kind="enum" label="State" description="Select option to set to from dropdown box">
+            <enum-values>
+                <value>Disabled</value>
+                <value>Enabled</value>
+            </enum-values>
+        </property>
+        <property name="valuesDict" category="input" kind="list_of_string" label="valuesDict" default="taskname,state" hidden="true"/> 
+
+        <property name="winrmEnableHttps" category="input" kind="boolean" required="false" default="false" label="Enable HTTPS for WinRM" description="Enable SSL communication to the WinRM server"/>
+        <property name="connectionType" category="input" default="WINRM_NATIVE" label="Connection type" description="Type of CIFS/Telnet/WinRM connection to create (TELNET, WINRM_INTERNAL, WINRM_NATIVE)"/>
+    </type>
+
+    <type type="Windows2012Tools.Services" extends="xlrelease.PythonScript">
+        <property name="scriptLocation" default="Windows2012Tools/PowershellRunner.py" hidden="true" />
+        <property name="PSscriptLocation"    category="input" kind="string" label="Script" default="Windows2012Tools/Services.ps1" hidden="true"/>
+        <property name="servers" category="input" kind="string" label="Servers"/>
+                <property name="username"    category="input" kind="string" label="Username"/>
+        <property name="password"    category="input" kind="string" label="Password" password="true" />
+        <property name="remotePath"    category="input" kind="string" label="Remote Path" required="true" default="c:\"/>
+        <property name="port"    category="input" kind="integer" label="Port" default="0" required="true"/>
+
+        <property name="displayname" category="input" kind="string" label="Display Name" description="Display name of service. Wildcard supported. Comma separate for multiple services. For example: spool*,task scheduler"/>
+        <property name="status"    category="input" kind="enum" label="Status" description="Select option to set to from dropdown box">
+            <enum-values>
+                <value>Paused</value>
+                <value>Running</value>
+                <value>Stopped</value>
+            </enum-values>
+        </property>
+        <property name="startuptype"    category="input" kind="enum" label="StartupType" description="Select option to set to from dropdown box">
+            <enum-values>
+                <value>Automatic</value>
+                <value>Disabled</value>
+                <value>Manual</value>
+            </enum-values>
+        </property>
+        <property name="valuesDict" category="input" kind="list_of_string" label="valuesDict" default="status,startuptype,displayname" hidden="true"/> 
+
+        <property name="winrmEnableHttps" category="input" kind="boolean" required="false" default="false" label="Enable HTTPS for WinRM" description="Enable SSL communication to the WinRM server"/>
+        <property name="connectionType" category="input" default="WINRM_NATIVE" label="Connection type" description="Type of CIFS/Telnet/WinRM connection to create (TELNET, WINRM_INTERNAL, WINRM_NATIVE)"/>
+    </type>
+
+    <type type="Windows2012Tools.RebootServers" extends="xlrelease.PythonScript">
+        <property name="scriptLocation" default="Windows2012Tools/PowershellRunner.py" hidden="true" />
+        <property name="PSscriptLocation"    category="input" kind="string" label="Script" default="Windows2012Tools/RebootServers.ps1" hidden="true"/>
+        <property name="servers" category="input" kind="string" label="Servers"
+/>
+        <property name="username"    category="input" kind="string" label="Username"/>
+        <property name="password"    category="input" kind="string" label="Password" password="true" />
+        <property name="remotePath"    category="input" kind="string" label="Remote Path" required="true" default="c:\"/>
+        <property name="port"    category="input" kind="integer" label="Port" default="0" required="true"/>        
+        
+        <property name="valuesDict" category="input" kind="list_of_string" label="valuesDict" default=" " hidden="true"/>        
+
+        <property name="winrmEnableHttps" category="input" kind="boolean" required="false" default="false" label="Enable HTTPS for WinRM" description="Enable SSL communication to the WinRM server"/>
+        <property name="connectionType" category="input" default="WINRM_NATIVE" label="Connection type" description="Type of CIFS/Telnet/WinRM connection to create (TELNET, WINRM_INTERNAL, WINRM_NATIVE)"/>
+    </type>
+</synthetic>
