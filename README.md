@@ -1,4 +1,4 @@
-# xlr-Windows2012-plugin
+# xlr-windows2012-plugin
 An XL Release plugin to perform Windows Server 2012 tasks across multiple machines
 
 See the **[XL Release Documentation](https://docs.xebialabs.com/xl-release/index.html)** for background information on XL Release and release concepts.
@@ -26,7 +26,13 @@ All of these take a list of servers. Once the task runs, it will generate a para
   * `Status`: Paused,Running,Stopped
   
 + Reboot Servers
-  * Restarts the server. No arguments
+  * Restarts the server. Requires an intermediate host to run from. 
+  * `Servers`: List of servers  
+  * `Username`: Username to login with
+  * `Password`: Password for Username
+  * `Remote Path`: Where the script should run
+  * `Port`: Port to connect with
+  * `Connection Type`: How to connect - see overthere documentation for more detail
   
 + Generic Arguments (sourced from PowerShell Task)
   * `Servers`: Comma Separated list of servers  
