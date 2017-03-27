@@ -46,10 +46,10 @@
     </type>
 
     <type type="Windows2012Tools.Services" extends="xlrelease.PythonScript">
-        <property name="scriptLocation" default="Windows2012Tools/PowershellRunner.py" hidden="true" />
+        <property name="scriptLocation" default="Windows2012Tools/PowershellRunnerLocal.py" hidden="true" />
         <property name="PSscriptLocation"    category="input" kind="string" label="Script" default="Windows2012Tools/Services.ps1" hidden="true"/>
         <property name="servers" category="input" kind="string" label="Servers"/>
-                <property name="username"    category="input" kind="string" label="Username"/>
+        <property name="username"    category="input" kind="string" label="Username"/>
         <property name="password"    category="input" kind="string" label="Password" password="true" />
         <property name="remotePath"    category="input" kind="string" label="Remote Path" required="true" default="c:\"/>
         <property name="port"    category="input" kind="integer" label="Port" default="0" required="true"/>
@@ -74,20 +74,17 @@
         <property name="winrmEnableHttps" category="input" kind="boolean" required="false" default="false" label="Enable HTTPS for WinRM" description="Enable SSL communication to the WinRM server"/>
         <property name="connectionType" category="input" default="WINRM_NATIVE" label="Connection type" description="Type of CIFS/Telnet/WinRM connection to create (TELNET, WINRM_INTERNAL, WINRM_NATIVE)"/>
     </type>
-
+      
     <type type="Windows2012Tools.RebootServers" extends="xlrelease.PythonScript">
-        <property name="scriptLocation" default="Windows2012Tools/PowershellRunner.py" hidden="true" />
-        <property name="PSscriptLocation"    category="input" kind="string" label="Script" default="Windows2012Tools/RebootServers.ps1" hidden="true"/>
-        <property name="servers" category="input" kind="string" label="Servers"
-/>
-        <property name="username"    category="input" kind="string" label="Username"/>
-        <property name="password"    category="input" kind="string" label="Password" password="true" />
+        <property name="scriptLocation" default="Windows2012Tools/RebootServers.py" hidden="true" />
+        <property name="servers" category="input" kind="list_of_string" label="Servers"/>
+        <property name="address"    category="input" kind="string" label="Address" description="The Host you wish to run the check from." />
+        <property name="username"    category="input" kind="string" label="Username" required="true"/>
+        <property name="password"    category="input" kind="string" label="Password" password="true" required="true"/>
         <property name="remotePath"    category="input" kind="string" label="Remote Path" required="true" default="c:\"/>
-        <property name="port"    category="input" kind="integer" label="Port" default="0" required="true"/>        
-        
-        <property name="valuesDict" category="input" kind="list_of_string" label="valuesDict" default=" " hidden="true"/>        
-
+        <property name="port"    category="input" kind="integer" label="Port" default="0" required="true"/>
+        <property name="winrsAllowDelegate" category="input" kind="boolean" required="false" default="true" label="Allow Remote Credential Delegation" />
         <property name="winrmEnableHttps" category="input" kind="boolean" required="false" default="false" label="Enable HTTPS for WinRM" description="Enable SSL communication to the WinRM server"/>
         <property name="connectionType" category="input" default="WINRM_NATIVE" label="Connection type" description="Type of CIFS/Telnet/WinRM connection to create (TELNET, WINRM_INTERNAL, WINRM_NATIVE)"/>
-    </type>
+    </type>     
 </synthetic>

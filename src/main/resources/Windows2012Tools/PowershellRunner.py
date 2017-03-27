@@ -4,18 +4,15 @@
 # FOR A PARTICULAR PURPOSE. THIS CODE AND INFORMATION ARE NOT SUPPORTED BY XEBIALABS.
 ###################################################################################################
 
-import sys, string, time, subprocess, os, zipfile,json
-import com.xhaus.jyson.JysonCodec as json
-from com.xebialabs.xlrelease.domain import Task
+import sys, os, zipfile
 from com.xebialabs.deployit.plugin.api.reflect import Type
-from java.text import SimpleDateFormat
 
 def createPowershellTask(phaseId,title,precondition, propertyMap):
 
     parenttaskType = Type.valueOf("xlrelease.CustomScriptTask")
     parentTask = parenttaskType.descriptor.newInstance("nonamerequired")
     parentTask.setTitle(title)
-    
+
     childTaskType = Type.valueOf("remoteScript.Powershell")
     childTask = childTaskType.descriptor.newInstance("nonamerequired")
     for item in propertyMap:
@@ -39,9 +36,9 @@ stringToAdd = ""
 
 if len(valuesDict) > 0:
     for argument in valuesDict:
-        stringToAdd = stringToAdd + " -" + argument + " " + '"' + eval(argument) + '"'
+        stringToAdd = stringToAdd + " -" + argument + " " + '"' +  eval(argument) + '"'
 
-pathtojar = os.getcwd()+"/plugins/xlr-Windows-2012-Tools-plugin-1.0.0.jar"
+pathtojar = os.getcwd()+"/plugins/xlr-Windows2012-plugin-1.0.2.jar"
 archive = zipfile.ZipFile(pathtojar, 'r')
 script = archive.read(PSscriptLocation)
 script = script + stringToAdd
